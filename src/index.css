@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --c-surface: #f8f9ff;
+    --c-surface-dim: #cbdbf5;
+    --c-surface-bright: #f8f9ff;
+    --c-surface-container-lowest: #ffffff;
+    --c-surface-container-low: #eff4ff;
+    --c-surface-container: #e5eeff;
+    --c-surface-container-high: #dce9ff;
+    --c-surface-container-highest: #d3e4fe;
+    --c-on-surface: #0b1c30;
+    --c-on-surface-variant: #464554;
+    --c-inverse-surface: #213145;
+    --c-inverse-on-surface: #eaf1ff;
+    --c-outline: #767586;
+    --c-outline-variant: #c7c4d7;
+    --c-surface-tint: #494bd6;
+    --c-primary: #4648d4;
+    --c-on-primary: #ffffff;
+    --c-primary-container: #6063ee;
+    --c-on-primary-container: #fffbff;
+    --c-inverse-primary: #c0c1ff;
+    --c-secondary: #006c49;
+    --c-on-secondary: #ffffff;
+    --c-secondary-container: #6cf8bb;
+    --c-on-secondary-container: #00714d;
+    --c-tertiary: #825100;
+    --c-on-tertiary: #ffffff;
+    --c-tertiary-container: #a36700;
+    --c-on-tertiary-container: #fffbff;
+    --c-error: #ba1a1a;
+    --c-on-error: #ffffff;
+    --c-error-container: #ffdad6;
+    --c-on-error-container: #93000a;
+    --c-background: #f8f9ff;
+    --c-on-background: #0b1c30;
+
+    /* Calendar category colors — pastel fills, saturated accents */
+    --cal-work-bg: #ffe1e6;
+    --cal-work-accent: #f43f5e;
+    --cal-work-text: #881337;
+    --cal-personal-bg: #fff3d6;
+    --cal-personal-accent: #f5a524;
+    --cal-personal-text: #7a4a00;
+    --cal-health-bg: #d8fbea;
+    --cal-health-accent: #10b981;
+    --cal-health-text: #04543a;
+    --cal-other-bg: #ede7ff;
+    --cal-other-accent: #8b5cf6;
+    --cal-other-text: #3b1e7a;
+    --cal-learning-bg: #dff3ff;
+    --cal-learning-accent: #0ea5e9;
+    --cal-learning-text: #075985;
+  }
+
+  .dark {
+    --c-surface: #0f1523;
+    --c-surface-dim: #0b0f1a;
+    --c-surface-bright: #1b243b;
+    --c-surface-container-lowest: #0a0d14;
+    --c-surface-container-low: #121828;
+    --c-surface-container: #182035;
+    --c-surface-container-high: #202b48;
+    --c-surface-container-highest: #28365a;
+    --c-on-surface: #e2e8f0;
+    --c-on-surface-variant: #94a3b8;
+    --c-inverse-surface: #f1f5f9;
+    --c-inverse-on-surface: #0f172a;
+    --c-outline: #64748b;
+    --c-outline-variant: #334155;
+    --c-surface-tint: #818cf8;
+    --c-primary: #6366f1;
+    --c-on-primary: #ffffff;
+    --c-primary-container: #4f46e5;
+    --c-on-primary-container: #e0e7ff;
+    --c-inverse-primary: #4338ca;
+    --c-secondary: #10b981;
+    --c-on-secondary: #ffffff;
+    --c-secondary-container: #059669;
+    --c-on-secondary-container: #d1fae5;
+    --c-tertiary: #f59e0b;
+    --c-on-tertiary: #ffffff;
+    --c-tertiary-container: #d97706;
+    --c-on-tertiary-container: #fef3c7;
+    --c-error: #ef4444;
+    --c-on-error: #ffffff;
+    --c-error-container: #dc2626;
+    --c-on-error-container: #fee2e2;
+    --c-background: #0b0f1a;
+    --c-on-background: #f8fafc;
+
+    /* Calendar category colors — translucent fills, bright accents */
+    --cal-work-bg: rgba(244, 63, 94, 0.16);
+    --cal-work-accent: #fb7185;
+    --cal-work-text: #ffd6de;
+    --cal-personal-bg: rgba(245, 165, 36, 0.16);
+    --cal-personal-accent: #fbbf24;
+    --cal-personal-text: #ffe8b8;
+    --cal-health-bg: rgba(16, 185, 129, 0.16);
+    --cal-health-accent: #34d399;
+    --cal-health-text: #c9fbe4;
+    --cal-other-bg: rgba(139, 92, 246, 0.18);
+    --cal-other-accent: #a78bfa;
+    --cal-other-text: #e6dcff;
+    --cal-learning-bg: rgba(14, 165, 233, 0.18);
+    --cal-learning-accent: #38bdf8;
+    --cal-learning-text: #d8f3ff;
+  }
+}
+
+@theme {
+  --color-surface: var(--c-surface);
+  --color-surface-dim: var(--c-surface-dim);
+  --color-surface-bright: var(--c-surface-bright);
+  --color-surface-container-lowest: var(--c-surface-container-lowest);
+  --color-surface-container-low: var(--c-surface-container-low);
+  --color-surface-container: var(--c-surface-container);
+  --color-surface-container-high: var(--c-surface-container-high);
+  --color-surface-container-highest: var(--c-surface-container-highest);
+  --color-on-surface: var(--c-on-surface);
+  --color-on-surface-variant: var(--c-on-surface-variant);
+  --color-inverse-surface: var(--c-inverse-surface);
+  --color-inverse-on-surface: var(--c-inverse-on-surface);
+  --color-outline: var(--c-outline);
+  --color-outline-variant: var(--c-outline-variant);
+  --color-surface-tint: var(--c-surface-tint);
+  --color-primary: var(--c-primary);
+  --color-on-primary: var(--c-on-primary);
+  --color-primary-container: var(--c-primary-container);
+  --color-on-primary-container: var(--c-on-primary-container);
+  --color-inverse-primary: var(--c-inverse-primary);
+  --color-secondary: var(--c-secondary);
+  --color-on-secondary: var(--c-on-secondary);
+  --color-secondary-container: var(--c-secondary-container);
+  --color-on-secondary-container: var(--c-on-secondary-container);
+  --color-tertiary: var(--c-tertiary);
+  --color-on-tertiary: var(--c-on-tertiary);
+  --color-tertiary-container: var(--c-tertiary-container);
+  --color-on-tertiary-container: var(--c-on-tertiary-container);
+  --color-error: var(--c-error);
+  --color-on-error: var(--c-on-error);
+  --color-error-container: var(--c-error-container);
+  --color-on-error-container: var(--c-on-error-container);
+  --color-background: var(--c-background);
+  --color-on-background: var(--c-on-background);
+
+  --color-cal-work-bg: var(--cal-work-bg);
+  --color-cal-work-accent: var(--cal-work-accent);
+  --color-cal-work-text: var(--cal-work-text);
+  --color-cal-personal-bg: var(--cal-personal-bg);
+  --color-cal-personal-accent: var(--cal-personal-accent);
+  --color-cal-personal-text: var(--cal-personal-text);
+  --color-cal-health-bg: var(--cal-health-bg);
+  --color-cal-health-accent: var(--cal-health-accent);
+  --color-cal-health-text: var(--cal-health-text);
+  --color-cal-other-bg: var(--cal-other-bg);
+  --color-cal-other-accent: var(--cal-other-accent);
+  --color-cal-other-text: var(--cal-other-text);
+  --color-cal-learning-bg: var(--cal-learning-bg);
+  --color-cal-learning-accent: var(--cal-learning-accent);
+  --color-cal-learning-text: var(--cal-learning-text);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --spacing-sidebar: 260px;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-on-background font-sans antialiased;
+  }
+
+  @media (max-width: 1023px) {
+    html,
+    body {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    *,
+    *::before,
+    *::after {
+      min-width: 0;
+    }
+
+    img,
+    svg,
+    canvas,
+    video {
+      max-width: 100%;
+    }
+
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+    }
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline-variant);
+  border-radius: 10px;
+}
+
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,15 @@
+.env
+.env.*
+server/.env
+server/.env.*
+node_modules/
+server/node_modules/
+dist/
+server/dist/
+*.log
+
+# Local design references / screenshots, not needed for deploy
+orig.webp
+screen
+ss
+10.1-15.6-21.5-32-Smart-Wifi-Family-Digital-Desk-Calendar-1080P-Smart-Calendar.avif

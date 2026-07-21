@@ -1,0 +1,39 @@
+{
+  "name": "lifeos-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "build:prod": "prisma generate --schema=prisma/schema.postgres.prisma && tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "seed": "tsx prisma/seed.ts",
+    "migrate": "prisma migrate dev --name init",
+    "db:push:prod": "prisma db push --schema=prisma/schema.postgres.prisma",
+    "generate": "prisma generate",
+    "studio": "prisma studio",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.14.0",
+    "@types/supertest": "^7.2.1",
+    "prisma": "^5.20.0",
+    "supertest": "^7.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vitest": "^4.1.10"
+  }
+}

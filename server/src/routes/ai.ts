@@ -7,7 +7,7 @@ export const aiRouter = Router();
 
 aiRouter.use(requireAuth);
 
-type AiProvider = 'anthropic' | 'gemini' | 'groq';
+type AiProvider = 'anthropic' | 'groq';
 type AiSuggestedAction = {
   id: string;
   kind: 'create_entity';
@@ -18,7 +18,6 @@ type AiSuggestedAction = {
 
 const providerLabels: Record<AiProvider, string> = {
   anthropic: 'Anthropic',
-  gemini: 'Gemini',
   groq: 'Groq',
 };
 
@@ -34,25 +33,22 @@ class AiProviderError extends Error {
 
 function getAiProvider(): AiProvider {
   const configured = process.env.AI_PROVIDER?.toLowerCase();
-  if (configured === 'anthropic' || configured === 'gemini' || configured === 'groq') {
+  if (configured === 'anthropic' || configured === 'groq') {
     return configured;
   }
 
-  if (process.env.GEMINI_API_KEY) return 'gemini';
   if (process.env.GROQ_API_KEY) return 'groq';
   if (process.env.ANTHROPIC_API_KEY) return 'anthropic';
 
-  return 'gemini';
+  return 'groq';
 }
 
 function getProviderApiKey(provider: AiProvider): string | undefined {
-  if (provider === 'gemini') return process.env.GEMINI_API_KEY;
   if (provider === 'groq') return process.env.GROQ_API_KEY;
   return process.env.ANTHROPIC_API_KEY;
 }
 
 function getProviderKeyName(provider: AiProvider): string {
-  if (provider === 'gemini') return 'GEMINI_API_KEY';
   if (provider === 'groq') return 'GROQ_API_KEY';
   return 'ANTHROPIC_API_KEY';
 }
@@ -289,45 +285,6 @@ async function callAnthropic(apiKey: string, systemPrompt: string, message: stri
     .trim();
 }
 
-async function callGemini(apiKey: string, systemPrompt: string, message: string, maxTokens = 800): Promise<string> {
-  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-goog-api-key': apiKey,
-    },
-    body: JSON.stringify({
-      systemInstruction: {
-        parts: [{ text: systemPrompt }],
-      },
-      contents: [
-        {
-          role: 'user',
-          parts: [{ text: message }],
-        },
-      ],
-      generationConfig: {
-        maxOutputTokens: maxTokens,
-        temperature: 0.7,
-      },
-    }),
-  });
-
-  if (!response.ok) {
-    const errBody = await response.text();
-    console.error('Gemini API error:', response.status, errBody);
-    throw new AiProviderError('gemini', response.status, errBody);
-  }
-
-  const data: any = await response.json();
-  return (data.candidates?.[0]?.content?.parts ?? [])
-    .map((part: any) => part.text)
-    .filter(Boolean)
-    .join('\n')
-    .trim();
-}
-
 async function callGroq(apiKey: string, systemPrompt: string, message: string, maxTokens = 800): Promise<string> {
   const model = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -357,7 +314,6 @@ async function callGroq(apiKey: string, systemPrompt: string, message: string, m
 }
 
 async function callAiProvider(provider: AiProvider, apiKey: string, systemPrompt: string, message: string, maxTokens?: number): Promise<string> {
-  if (provider === 'gemini') return callGemini(apiKey, systemPrompt, message, maxTokens);
   if (provider === 'groq') return callGroq(apiKey, systemPrompt, message, maxTokens);
   return callAnthropic(apiKey, systemPrompt, message, maxTokens);
 }

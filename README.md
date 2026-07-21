@@ -76,10 +76,7 @@ AI requests go through the backend (`POST /api/ai/chat`). The frontend never
 stores provider keys. Configure one provider in `server/.env`:
 
 ```env
-AI_PROVIDER="gemini"
-
-GEMINI_API_KEY=""
-GEMINI_MODEL="gemini-2.0-flash"
+AI_PROVIDER="groq"
 
 GROQ_API_KEY=""
 GROQ_MODEL="llama-3.3-70b-versatile"
@@ -87,9 +84,6 @@ GROQ_MODEL="llama-3.3-70b-versatile"
 ANTHROPIC_API_KEY=""
 ANTHROPIC_MODEL="claude-haiku-4-5-20251001"
 ```
-
-For Gemini, create a key at **https://aistudio.google.com/app/apikey** and put
-it into `GEMINI_API_KEY`. Gemini keys commonly start with `AIza`.
 
 For Groq, create a key at **https://console.groq.com/keys** and put it into
 `GROQ_API_KEY`. Groq keys commonly start with `gsk_`.

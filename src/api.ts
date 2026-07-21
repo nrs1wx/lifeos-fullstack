@@ -62,7 +62,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
 export const api = {
   register: (name: string, email: string, password: string) =>
-    request<{ requiresVerification: boolean; email: string; user: any; devCode?: string }>('/auth/register', {
+    request<{ token: string; user: any }>('/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
     }),
@@ -72,16 +72,6 @@ export const api = {
       body: JSON.stringify({ email, password }),
     }),
   checkEmail: (email: string) => request<{ available: boolean }>(`/auth/check-email?email=${encodeURIComponent(email)}`),
-  verifyEmail: (email: string, code: string) =>
-    request<{ token: string; user: any }>('/auth/verify-email', {
-      method: 'POST',
-      body: JSON.stringify({ email, code }),
-    }),
-  resendVerification: (email: string) =>
-    request<{ ok: boolean; devCode?: string }>('/auth/resend-verification', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-    }),
   me: () => request<{ user: any }>('/auth/me'),
   bootstrap: () => request<Record<string, any>>('/bootstrap'),
   updateProfile: (updates: { name?: string; city?: string }) =>

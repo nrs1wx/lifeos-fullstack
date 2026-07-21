@@ -18,10 +18,6 @@ services:
         generateValue: true
       - key: CORS_ORIGIN
         sync: false
-      - key: RESEND_API_KEY
-        sync: false
-      - key: EMAIL_FROM
-        sync: false
       - key: APP_NAME
         value: LifeOS
       - key: AI_PROVIDER
